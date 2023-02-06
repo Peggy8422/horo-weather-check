@@ -1,0 +1,220 @@
+
+
+//色彩變數
+$color_daylight: #CEF4FF;
+$color_white: #f3f3f3;
+$color_yellow: #FFD633;
+$color_black: #333;
+$color_grey_cloud: #ccc;
+$color_heart: #FF0040;
+$color_sun: #FFDA01;
+$color_darkblue: #000238;
+$color_lightblue: #11148D;
+
+//mixin 設定
+@mixin size($w,$h) {
+  width:$w;
+  height:$h;
+}
+
+//盒子主體
+.box {
+  @include size(100%, 80vh);
+  max-width: 500px;
+  background-color: $color_daylight;
+  cursor: pointer;
+  transition: 1s;
+  box-shadow: 0px 0px 20px rgba(black, 0.3);
+  border-radius: 10px;
+  
+  .innerBox {
+    position: relative;
+    @include size(100%, 100%);
+  }
+} 
+
+label {
+  position: relative;
+  cursor: pointer;
+  // z-index: 2;
+  .inner_box {
+    @include size(100%, 100%);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 1s;
+  }
+}
+
+.top {
+  position: relative;
+  height: 330px;
+  .horoSvg,
+  .horoSvg > svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 1s 0.2s;
+    polyline {
+      stroke: $color_white;
+      stroke-width: 0.7px;
+      fill: none;
+    }
+    circle {
+      fill: $color_white;
+    }
+  }
+  .star {
+    position: absolute;
+    display: none;
+    left: 12%;
+    top: 35%;
+    width: 0px;
+    height: 0px;
+    border-right: 5px solid transparent;
+    border-bottom: 3.5px solid $color_white;
+    border-left: 5px solid transparent;
+    transform: rotate(35deg);
+    animation: starshine 2s infinite;
+    &:before {
+      content: '';
+      border-bottom: 4px solid $color_white;
+      border-left: 1.5px solid transparent;
+      border-right: 1.5px solid transparent;
+      position: absolute;
+      height: 0;
+      width: 0;
+      top: -2.25px;
+      left: -3.25px;
+      display: block;
+      transform: rotate(-35deg);
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      color: black;
+      top: 0.15px;
+      left: -5.25px;
+      width: 0px;
+      height: 0px;
+      border-right: 5px solid transparent;
+      border-bottom: 3.5px solid $color_white;
+      border-left: 5px solid transparent;
+      transform: rotate(-70deg);
+    }
+  }
+  .star2 {
+    position: absolute;
+    left: unset;
+    right: 25%;
+    top: 15%;
+    animation-delay: -0.3s;
+  }
+  .star3 {
+    position: absolute;
+    left: unset;
+    right: 30%;
+    top: 92%;
+    animation-delay: -0.7s;
+  }
+
+}
+.horoTextCommon {
+  position: absolute;
+  text-align: center;
+  letter-spacing: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $color_white;
+  transition: 0.5s;
+}
+.text_box {
+  composes: horoTextCommon;
+  color: $color_black;
+  top: 50%;
+  transform: translate(-50%, 0);
+  .text_area {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
+.horoscope {
+  composes: horoTextCommon;
+  top: 280px;
+  color: $color_white;
+  opacity: 0;
+}
+
+//星座資訊
+.bottom {  
+  // border: 2px solid red
+  // display: none;
+  position: absolute;
+  width: 90%;
+  height: 30%;
+  bottom: 5%;
+  left: 50%;
+  overflow: hidden;
+  overflow-y: scroll;
+  transform: translateX(-50%);
+  transition: 0.5s;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .suggestTitle,
+  p {
+    margin: 0;
+    color: $color_white;
+    letter-spacing: 1px;
+  }
+  p {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    span {
+      padding-left: 8px;
+    }
+  }
+}
+
+// 一些同時控制的小動畫
+@keyframes starshine {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+};
+
+//隱藏checkbox
+.switch_night {
+  display: none;
+}
+//切換畫面
+.switch_night:checked + .inner_box {
+  background: linear-gradient(to bottom,$color_darkblue,$color_lightblue);
+  .top {
+    .star {
+      display: block;
+    }
+    .text_box {
+      opacity: 0;
+    }
+  }
+  .horoSvg,
+  .horoSvg > svg,
+  .horoscope {
+    opacity: 1;
+  }
+  .bottom {
+    display: block;
+  }
+}
+  

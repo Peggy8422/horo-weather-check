@@ -1,0 +1,37 @@
+//色彩變數
+$color_daylight: #CEF4FF;
+$color_white: #f3f3f3;
+$color_yellow: #FFD633;
+$color_black: #333;
+$color_grey_cloud: #ccc;
+$color_heart: #FF0040;
+$color_sun: #FFDA01;
+$color_darkblue: #000238;
+$color_lightblue: #11148D;
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+//mixin 設定
+@mixin size($w,$h) {
+  width:$w;
+  height:$h;
+}
+
+html, body {
+  @include size(100%, 100%);
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color_black;
+}
+
+.App {
+  width: 100%;
+}
+  

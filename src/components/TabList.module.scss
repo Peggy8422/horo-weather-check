@@ -1,0 +1,58 @@
+//色彩變數
+$color_daylight: #CEF4FF;
+$color_white: #f3f3f3;
+$color_yellow: #FFD633;
+$color_black: #333;
+$color_grey_cloud: #ccc;
+$color_heart: #FF0040;
+$color_sun: #FFDA01;
+$color_darkblue: #000238;
+$color_lightblue: #11148D;
+
+.tabList {
+  position: absolute;
+  left: 0;
+  text-align: left;
+  z-index: -1;
+  &.show {
+    transform: translateX(calc(-100% + 20px));
+    z-index: 0;
+    transition: 0.5s;
+  }
+  .tabItem {
+    color: $color_white;
+    background-color: $color_darkblue;
+    padding: 8px 10px;
+    padding-right: 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    transition: 0.3s;
+    &::after {
+      display: inline-block;
+      content: '';
+      margin-left: 10px;
+      margin-bottom: 1px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: $color_white;
+      opacity: 0;
+    }
+      
+    &.active {
+      padding-right: 20px;
+      left: -10px;
+      transition: 0.3s;
+      &::after {
+        opacity: 1;
+      }  
+    }
+      
+    &:hover {
+      transform: translateX(-2px);
+    }
+      
+  }
+    
+}

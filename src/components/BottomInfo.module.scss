@@ -1,0 +1,44 @@
+//色彩變數
+$color_daylight: #CEF4FF;
+$color_white: #f3f3f3;
+$color_yellow: #FFD633;
+$color_black: #333;
+$color_grey_cloud: #ccc;
+$color_heart: #FF0040;
+$color_sun: #FFDA01;
+$color_darkblue: #000238;
+$color_lightblue: #11148D;
+
+:global(.bottom) {  
+  // border: 2px solid red
+  display: none;
+  position: absolute;
+  width: 90%;
+  height: 30%;
+  bottom: 5%;
+  left: 50%;
+  overflow: hidden;
+  overflow-y: scroll;
+  transform: translateX(-50%);
+  transition: 0.5s;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .suggestTitle,
+  p {
+    margin: 0;
+    color: $color_white;
+    letter-spacing: 1px;
+  }
+  p {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    span {
+      padding-left: 8px;
+    }
+  }
+}
