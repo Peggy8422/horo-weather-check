@@ -19,8 +19,7 @@ $color_lightblue: #11148D;
 
 //盒子主體
 .box {
-  @include size(100%, 80vh);
-  max-width: 500px;
+  @include size(500px, 80vh);
   background-color: $color_daylight;
   cursor: pointer;
   transition: 1s;
@@ -40,6 +39,7 @@ label {
   .inner_box {
     // position: relative;
     @include size(100%, 100%);
+    // min-width: 300px;
     border-radius: 10px;
     overflow: hidden;
     transition: 1s;

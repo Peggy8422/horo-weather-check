@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TabList from "../components/TabList";
+import HoroSvg from "../components/HoroSvg";
 import BottomInfo from "../components/BottomInfo";
 import boxStyles from "./Box.module.scss";
+import { getHoroscopeInfo } from "../api/horoscopeAPI";
+
+
+const initialInfo = {
+  description: '',
+  compatibility: '',
+  mood: '',
+  color: '',
+  lucky_number: '',
+  lucky_time: '',
+  isLoading: true,
+};
 
 function Box() {
   const [activeTab, setActiveTab] = useState('Aries');
   const [isTabShow, setIsTabShow] = useState(false);
+  const [horoscopeInfo, setHoroscopeInfo] = useState(initialInfo);
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getHoroscopeInfo({ sign: activeTab.toLowerCase() });
+      setHoroscopeInfo({...data, isLoading: false});
+    };
+    getData();
+    return () => {
+      setHoroscopeInfo(initialInfo);
+    };
+  }, [activeTab]);
 
   return (
     <div className={boxStyles.box}>
@@ -17,9 +42,8 @@ function Box() {
           }} />
           <div className={boxStyles.inner_box}>
             <div className={boxStyles.top}>
-              <div className={boxStyles.horoSvg}>
-                {/* 星座svg圖位置 */}
-              </div>
+              {/* 星座svg圖位置 */}
+              <HoroSvg activeTab={activeTab}/>
               <div className={boxStyles.star}></div>
               <div className={`${boxStyles.star} ${boxStyles.star2}`}></div>
               <div className={`${boxStyles.star} ${boxStyles.star3}`}></div>
@@ -29,7 +53,15 @@ function Box() {
                 <h4 className="date"> </h4>
               </div>
             </div>
-            <BottomInfo />
+            <BottomInfo 
+              description={horoscopeInfo.description}
+              compatibility={horoscopeInfo.compatibility}
+              mood={horoscopeInfo.mood}
+              color={horoscopeInfo.color}
+              luckyNum={horoscopeInfo.lucky_number}
+              luckyTime={horoscopeInfo.lucky_time}
+              isLoading={horoscopeInfo.isLoading}
+            />
           </div>
         </label>
       </div>

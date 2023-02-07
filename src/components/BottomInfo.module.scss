@@ -10,18 +10,21 @@ $color_darkblue: #000238;
 $color_lightblue: #11148D;
 
 :global(.bottom) {  
+  box-sizing: border-box;
   width: 90%;
   // height: calc(50% - 20px);
+  max-height: 200px;
   margin: 0 auto;
   overflow: hidden;
   overflow-y: scroll;
+  text-align: left;
   opacity: 0;
   transition: 0.5s;
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
   &::-webkit-scrollbar-thumb {
-    border-radius: 3px;
+    border-radius: 2px;
     background-color: rgba(255, 255, 255, 0.5);
   }
   .suggestTitle,
@@ -30,10 +33,21 @@ $color_lightblue: #11148D;
     color: $color_white;
     letter-spacing: 1px;
   }
+  .description {
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  hr {
+    margin: 1rem 0;
+    width: 95%;
+  }
   p {
     margin-top: 0.5rem;
     font-size: 0.8rem;
     span {
+      font-size: 1rem;
+      font-family: 'Caveat', cursive;
       padding-left: 8px;
     }
   }
