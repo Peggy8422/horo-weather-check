@@ -10,16 +10,12 @@ $color_darkblue: #000238;
 $color_lightblue: #11148D;
 
 :global(.bottom) {  
-  // border: 2px solid red
-  display: none;
-  position: absolute;
   width: 90%;
-  height: 30%;
-  bottom: 5%;
-  left: 50%;
+  // height: calc(50% - 20px);
+  margin: 0 auto;
   overflow: hidden;
   overflow-y: scroll;
-  transform: translateX(-50%);
+  opacity: 0;
   transition: 0.5s;
   &::-webkit-scrollbar {
     width: 6px;

@@ -38,6 +38,7 @@ label {
   cursor: pointer;
   // z-index: 2;
   .inner_box {
+    // position: relative;
     @include size(100%, 100%);
     border-radius: 10px;
     overflow: hidden;
@@ -213,8 +214,8 @@ label {
   .horoscope {
     opacity: 1;
   }
-  .bottom {
-    display: block;
+  :global(.bottom) {
+    opacity: 1;
   }
 }
   

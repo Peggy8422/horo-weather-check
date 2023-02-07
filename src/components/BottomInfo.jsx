@@ -3,7 +3,7 @@ import bottomStyles from "./BottomInfo.module.scss";
 
 function BottomInfo({ description, compatibility, mood, color, luckyNum, luckyTime}) {
   return (
-    <div className="">
+    <div className="bottom">
       <h5 className={bottomStyles.suggestTitle}>Your Daily Suggest...</h5>
       <p className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non tincidunt nulla. Ut velit libero, tincidunt at lectus non, pellentesque porta erat. {description}</p>
       <hr/>

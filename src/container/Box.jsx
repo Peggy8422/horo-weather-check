@@ -5,19 +5,15 @@ import boxStyles from "./Box.module.scss";
 
 function Box() {
   const [activeTab, setActiveTab] = useState('Aries');
-  const [isTabShow, setIsTabShow] = useState('false');
+  const [isTabShow, setIsTabShow] = useState(false);
 
   return (
     <div className={boxStyles.box}>
       <div className={boxStyles.innerBox}>
         <TabList isTabShow={isTabShow} activeTab={activeTab} setActiveTab={setActiveTab} />
-        <label>
-          <input className={boxStyles.switch_night} type="checkbox" onChange={(e) => {
-            if (e.target.checked) {
-              setIsTabShow(true);
-            } else {
-              setIsTabShow(false);
-            }
+        <label htmlFor="switch">
+          <input id="switch" className={boxStyles.switch_night} type="checkbox" checked={isTabShow} onChange={() => {
+            setIsTabShow(!isTabShow);
           }} />
           <div className={boxStyles.inner_box}>
             <div className={boxStyles.top}>
@@ -27,7 +23,7 @@ function Box() {
               <div className={boxStyles.star}></div>
               <div className={`${boxStyles.star} ${boxStyles.star2}`}></div>
               <div className={`${boxStyles.star} ${boxStyles.star3}`}></div>
-              <div className={boxStyles.horoscope}>ARIES</div>
+              <div className={boxStyles.horoscope}>{activeTab.toUpperCase()}</div>
               <div className={boxStyles.text_box}>
                 <i className={boxStyles.text_area}>Daily Horoscope & Weather Check</i>
                 <h4 className="date"> </h4>
