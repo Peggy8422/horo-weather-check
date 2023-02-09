@@ -10,6 +10,11 @@ import { ReactComponent as SagittariusIcon } from "./sagittarius.svg";
 import { ReactComponent as CapricornIcon } from "./capricorn.svg";
 import { ReactComponent as AquariusIcon } from "./aquarius.svg";
 import { ReactComponent as PiscesIcon } from "./pisces.svg";
+import { ReactComponent as LocationIcon } from "./location-dot-solid.svg";
+import { ReactComponent as RightIcon } from "./angles-right-solid.svg";
+import { ReactComponent as LeftIcon } from "./angles-left-solid.svg";
+//暫時的太陽
+import { ReactComponent as SunIcon } from "./sun-temp.svg";
 
 export {
   AriesIcon,
@@ -23,5 +28,9 @@ export {
   SagittariusIcon,
   CapricornIcon,
   AquariusIcon,
-  PiscesIcon
+  PiscesIcon,
+  LocationIcon,
+  RightIcon,
+  LeftIcon,
+  SunIcon
 };

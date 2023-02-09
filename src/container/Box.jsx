@@ -50,7 +50,7 @@ function Box() {
               <div className={boxStyles.horoscope}>{activeTab.toUpperCase()}</div>
               <div className={boxStyles.text_box}>
                 <i className={boxStyles.text_area}>Daily Horoscope & Weather Check</i>
-                <h4 className="date"> </h4>
+                <h4 className={boxStyles.date}>{horoscopeInfo.current_date} </h4>
               </div>
             </div>
             <BottomInfo 

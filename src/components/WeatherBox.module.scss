@@ -1,0 +1,87 @@
+//色彩變數
+$color_daylight: #CEF4FF;
+$color_white: #f3f3f3;
+$color_yellow: #FFD633;
+$color_black: #333;
+$color_grey_cloud: #ccc;
+$color_heart: #FF0040;
+$color_sun: #FFDA01;
+$color_darkblue: #000238;
+$color_lightblue: #11148D;
+
+.weatherBox {
+  position: absolute;
+  display: flex;
+  right: 0;
+  top: 70%;
+  transform: translateX(30px);
+  padding: 15px 45px;
+  color: $color_white;
+  background-color: $color_black;
+  border-radius: 10px;
+  border: 2px solid $color_white;
+  box-shadow: 0 0 5px 1px rgba($color_grey_cloud, 0.3);
+  z-index: -1;
+  overflow: hidden;
+  transition: 0.3s;
+  &.show {
+    right: -48%;
+  }
+}
+
+.leftSide {
+  text-align: center;
+  .location {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $color_white;
+    .icon svg {
+      margin-right: 5px;
+      fill: $color_heart;
+      width: 15px;
+    }
+    select {
+      padding: 0 2px;
+      font-size: 1.2rem;
+      background-color: transparent;
+      border: none;
+      color: $color_white;
+      &:focus {
+        outline: none;
+      }
+      option {
+        color: $color_black;
+      }
+    }
+  }
+  .data {
+    padding: 5px 0;
+    .description {
+      // font-size: 1rem;
+      line-height: 2rem;
+    }
+    .temperature {
+      font-size: 2.2rem;
+      font-weight: 400;
+    }
+  }
+}
+.rightSide {
+  margin: 0;
+  padding: 10px;
+}
+
+.showBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  border: none;
+  background-color: $color_daylight;
+  svg {
+    fill: #333;
+    cursor: pointer;
+  }
+}
