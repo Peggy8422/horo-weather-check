@@ -68,8 +68,16 @@ $color_lightblue: #11148D;
   }
 }
 .rightSide {
+  position: relative;
   margin: 0;
   padding: 10px;
+}
+
+.refreshIcon {
+  position: absolute;
+  right: 0;
+  width: 15px;
+  fill: $color_white;
 }
 
 .showBtn {

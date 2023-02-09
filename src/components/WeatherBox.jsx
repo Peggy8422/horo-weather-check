@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { LocationIcon, RightIcon, LeftIcon, SunIcon } from "../assets";
+import { LocationIcon, RightIcon, LeftIcon, RefreshIcon, SunIcon } from "../assets";
 import weatherStyles from "./WeatherBox.module.scss";
 
+
+//待串接"局屬氣象站-現在天氣觀測報告"API
 function WeatherBox() {
   const [showBox, setShowBox] = useState(false);
 
@@ -30,6 +32,7 @@ function WeatherBox() {
           {/* 排版暫時用 */}
           <SunIcon />
         </div>
+        <RefreshIcon className={weatherStyles.refreshIcon} />
       </div>
       <button className={weatherStyles.showBtn}>
         {!showBox && <RightIcon onClick={() => setShowBox(true)} />}

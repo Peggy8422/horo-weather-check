@@ -13,6 +13,7 @@ import { ReactComponent as PiscesIcon } from "./pisces.svg";
 import { ReactComponent as LocationIcon } from "./location-dot-solid.svg";
 import { ReactComponent as RightIcon } from "./angles-right-solid.svg";
 import { ReactComponent as LeftIcon } from "./angles-left-solid.svg";
+import { ReactComponent as RefreshIcon } from "./rotate-right-solid.svg";
 //暫時的太陽
 import { ReactComponent as SunIcon } from "./sun-temp.svg";
 
@@ -32,5 +33,6 @@ export {
   LocationIcon,
   RightIcon,
   LeftIcon,
+  RefreshIcon,
   SunIcon
 };
