@@ -18,6 +18,7 @@ const destrictOptions = [
   // {value: 'Maoli', name: '苗栗縣', abv: '苗栗'},
 ];
 
+//取得當前日夜
 const getMoment = (locationName) => {
   //從日出日落時間中找出符合的地區
   const location = sunriseAndSunsetData.find(
@@ -99,6 +100,7 @@ function WeatherBox() {
 
   }, [selectedCity]);
 
+  //將複雜的計算用useMemo處理
   const nowMoment = useMemo(() => getMoment(weatherElement.cityName), [weatherElement.cityName]);
 
   useEffect(() => {
