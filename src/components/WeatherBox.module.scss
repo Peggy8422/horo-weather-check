@@ -78,6 +78,7 @@ $color_lightblue: #11148D;
   right: 0;
   width: 15px;
   fill: $color_white;
+  cursor: pointer;
 }
 
 .showBtn {
@@ -91,5 +92,12 @@ $color_lightblue: #11148D;
   svg {
     fill: #333;
     cursor: pointer;
+  }
+}
+
+.weatherIcon {
+  svg {
+    width: 80px;
+    height: 80px;
   }
 }
