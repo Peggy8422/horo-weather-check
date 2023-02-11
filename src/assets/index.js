@@ -17,7 +17,6 @@ import { ReactComponent as RightIcon } from "./angles-right-solid.svg";
 import { ReactComponent as LeftIcon } from "./angles-left-solid.svg";
 import { ReactComponent as RefreshIcon } from "./rotate-right-solid.svg";
 //天氣圖示
-import { ReactComponent as SunIcon } from "./sun-temp.svg";
 import { ReactComponent as DayThunderstorm } from "./day-thunderstorm.svg";
 import { ReactComponent as DayClear } from "./day-clear.svg";
 import { ReactComponent as DayCloudyFog } from "./day-cloudy-fog.svg";
@@ -63,6 +62,5 @@ export {
   NightFog,
   NightPartiallyClearWithRain,
   NightSnowing,
-  NightThunderstorm,
-  SunIcon
+  NightThunderstorm
 };
