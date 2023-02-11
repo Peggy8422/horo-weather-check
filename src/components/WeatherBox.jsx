@@ -9,13 +9,13 @@ import sunriseAndSunsetData from '../sunrise-sunset.json';
 const destrictOptions = [
   {value: 'Yilan', name: '宜蘭縣', abv: '宜蘭'},
   {value: 'Hualian', name: '花蓮縣', abv: '花蓮'},
-  {value: 'Taitung', name: '臺東市', abv: '臺東'},
+  {value: 'Taitung', name: '臺東縣', abv: '臺東'},
   {value: 'Keelung', name: '基隆市', abv: '基隆'},
   {value: 'Taipei', name: '臺北市', abv: '臺北'},
   {value: 'NewTaipei', name: '新北市', abv: '新北'},
-  {value: 'Taoyuan', name: '桃園市', abv: '桃園'},
+  // {value: 'Taoyuan', name: '桃園市', abv: '桃園'},
   {value: 'Hsinchu', name: '新竹縣', abv: '新竹'},
-  {value: 'Maoli', name: '苗栗縣', abv: '苗栗'},
+  // {value: 'Maoli', name: '苗栗縣', abv: '苗栗'},
 ];
 
 const getMoment = (locationName) => {
@@ -68,21 +68,35 @@ function WeatherBox() {
     description: '多雲時晴',
     weatherCode: 0,
     temperature: 27.5,
-  });
-  
-  // const selectRef = useRef(null);
+  })
 
   //提取所有取的天氣資料會共用的函式用useCallback包起來
   const getAllData = useCallback(() => {
-    setWeatherElement((prevData) => ({
-      ...prevData, 
-      cityName: destrictOptions.find(option => option.value === selectedCity).name,
-      locationName: destrictOptions.find(option => option.value === selectedCity).abv
-    }));
-    console.log(selectedCity);
-    getCurrentTemp();
-    getWx();
-    
+    console.log('Now selected: ', selectedCity);
+
+    const [cityName, locationName] = [
+      destrictOptions.find(option => option.value === selectedCity).name,
+      destrictOptions.find(option => option.value === selectedCity).abv
+    ]
+    console.log(cityName);
+    console.log(locationName);
+
+    const gettingWeatherData = async () => {
+      const [temperature, forecastData] = await Promise.all([
+        getCurrentTemp(locationName),
+        getWx(cityName)
+      ]);
+      console.log(temperature, forecastData);
+      setWeatherElement((prevData) => ({
+        ...prevData,
+        cityName,
+        locationName,
+        temperature,
+        ...forecastData
+      }));
+    };
+    gettingWeatherData();
+
   }, [selectedCity]);
 
   const nowMoment = useMemo(() => getMoment(weatherElement.cityName), [weatherElement.cityName]);
@@ -93,25 +107,31 @@ function WeatherBox() {
   }, [getAllData]);
 
   //取得當前溫度
-  const getCurrentTemp = async () => {
-    const data = await getCurrentWeather(weatherElement.locationName);
+  const getCurrentTemp = async (locationName) => {
+    const data = await getCurrentWeather(locationName);
     const locationData = data.records.location[0];
-    const temperature = locationData.weatherElement.find(item => item.elementName === 'TEMP').elementValue;
+    const temperature = locationData && locationData.weatherElement.find(item => item.elementName === 'TEMP').elementValue;
 
-    setWeatherElement((prevData) => ({...prevData, temperature}));
+    // setWeatherElement((prevData) => ({...prevData, temperature}));
+    return temperature;
 
   }
   //取得當前(近12小時)天氣描述
-  const getWx = async () => {
-    const data = await getForecast(weatherElement.cityName);
+  const getWx = async (cityName) => {
+    const data = await getForecast(cityName);
     const locationData = data.records.location[0];
-    const Wx = locationData.weatherElement.find(item => item.elementName === 'Wx').time[0].parameter || '';
+    const Wx = locationData && locationData.weatherElement.find(item => item.elementName === 'Wx').time[0].parameter;
 
-    setWeatherElement((prevData) => ({
-      ...prevData, 
+    // setWeatherElement((prevData) => ({
+    //   ...prevData, 
+    //   description: Wx.parameterName,
+    //   weatherCode: Wx.parameterValue
+    // }));
+    return {
       description: Wx.parameterName,
       weatherCode: Wx.parameterValue
-    }));
+    };
+
   }
 
   return (
@@ -123,12 +143,6 @@ function WeatherBox() {
           </div>
           <select value={selectedCity} onChange={(e) => {
             setSelectedCity(e.target.value);
-            // setWeatherElement((prevData) => ({
-            //   ...prevData, 
-            //   cityName: destrictOptions.find(option => option.value === selectedCity).name,
-            //   locationName: destrictOptions.find(option => option.value === selectedCity).abv
-            // }));
-            
           }} >
             {destrictOptions.map(option => {
               return <option key={option.abv} value={option.value}>{option.name}</option>
